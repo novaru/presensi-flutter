@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895907179885",
+    "project_id": "presensi-diengcyber",
+    "storage_bucket": "presensi-diengcyber.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895907179885:android:c3dc948865c0b0ce21be64",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo2NF26WviZEfRyIldZWJ2TirgdCjDDqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
