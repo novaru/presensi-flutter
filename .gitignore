@@ -46,3 +46,15 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Firebase / Google Services config (contains API keys; regenerate locally via
+# `flutterfire configure` + Firebase console downloads, or CI secrets)
+lib/firebase_options.dart
+android/app/google-services.json
+android/firebase_app_id_file.json
+ios/Runner/GoogleService-Info.plist
+ios/firebase_app_id_file.json
+macos/Runner/GoogleService-Info.plist
+
+# Local agent session data
+.serena/

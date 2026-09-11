@@ -344,11 +344,20 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                             ),
                             children: [
                               TileLayer(
+                                // Esri street map (key-free) instead of
+                                // tile.openstreetmap.org (blocked) and
+                                // CARTO (now requires an API key).
+                                // Note z/y/x order.
                                 urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
                                 userAgentPackageName: 'com.example.my_app',
                               ),
                               MarkerLayer(markers: markers),
+                              const RichAttributionWidget(
+                                attributions: [
+                                  TextSourceAttribution('Powered by Esri'),
+                                ],
+                              ),
                             ],
                           ),
                           if (!hasAnyPin && _statusLoading)

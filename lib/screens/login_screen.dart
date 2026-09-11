@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,6 +35,25 @@ class _LoginScreenState extends State<LoginScreen> {
       // AuthGate in main.dart handles navigating to AttendanceScreen.
     } catch (e) {
       _showFlash('Email atau password salah. Silakan coba lagi.');
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _loginWithGoogle() async {
+    setState(() {
+      _loading = true;
+    });
+    try {
+      await _authService.signInWithGoogle();
+      // AuthGate in main.dart handles navigating to AttendanceScreen.
+    } on GoogleSignInException catch (e) {
+      // Dismissed picker is not an error; stay silent.
+      if (e.code != GoogleSignInExceptionCode.canceled) {
+        _showFlash('Login Google gagal. Silakan coba lagi.');
+      }
+    } catch (_) {
+      _showFlash('Login Google gagal. Silakan coba lagi.');
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -88,6 +108,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20, width: 20,
                         child: CircularProgressIndicator(strokeWidth: 2))
                         : const Text('Login'),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: _loading ? null : _loginWithGoogle,
+                    icon: const Text(
+                      'G',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    label: const Text('Sign in with Google'),
                   ),
                 ),
               ],
